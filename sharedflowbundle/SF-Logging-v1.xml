@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="Logging">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1631543920516</CreatedAt>
+    <CreatedBy>eceledonio@nearbpo.com</CreatedBy>
+    <Description>Shared flow created in order to save the logs with Loggly</Description>
+    <DisplayName>Logging</DisplayName>
+    <LastModifiedAt>1631543985525</LastModifiedAt>
+    <LastModifiedBy>eceledonio@nearbpo.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:90bd2ee5681a050f34c23302f48a3908cba83c840d2eac0beaf838b20c6dd82721b64fd749238c8b36868cd8e2944c4314beeaa4ba20892d967bcede26738ae2</ManifestVersion>
+    <Policies>
+        <Policy>SC-SendLogsToLoggly</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

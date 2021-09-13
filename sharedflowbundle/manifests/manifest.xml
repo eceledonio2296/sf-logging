@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="SC-SendLogsToLoggly" version="SHA-512:97cc585e2f288484112620b80f57ecc545a712b1806cdd72b8751ecffc3a17b4ad165649acec955a7aadd65b1970a5c35771c4db04ed61788066e74901ba8399"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:6f23ce3a54f8785cbf0da8797aa3ef46fe57b7eed34eebbadeea0d3db307c4cc6caf97f4a48ba72d053f5c2b5a8b333b89c74965c8fd3ab7849344073713fb87"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

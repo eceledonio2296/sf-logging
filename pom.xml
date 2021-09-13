@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.SF-Logging.api</groupId>
+    <artifactId>SF-Logging-v1</artifactId>
+
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <name>${sharedFlow.name}</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <sharedFlow.name>SF-Logging-v1</sharedFlow.name>
+
+        <apigee.env>${env.APIGEE_ENV}</apigee.env>
+        <apigee.org>${env.APIGEE_ORG}</apigee.org>
+        <apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+        <apigee.password>${env.APIGEE_PWD}</apigee.password>
+
+        <apigee.config.dir>${project.build.directory}/edge</apigee.config.dir>
+        <apigee.config.options>update</apigee.config.options>
+
+        <config.dir>config</config.dir>
+        <config.file>${apigee.org}.${apigee.env}.yaml</config.file>
+
+    </properties>
+
+
+    <profiles>
+        <profile>
+            <id>test</id>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>it.ozimov</groupId>
+                <artifactId>yaml-properties-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${config.dir}/globals.yaml</file>
+                                <file>${config.dir}/${apigee.org}.${apigee.env}.yaml</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>write-execution-properties</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.directory}/project.properties</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-artifacts</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <encoding>UTF-8</encoding>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>sharedflowbundle/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.apigee.build-tools.enterprise4g</groupId>
+                <artifactId>apigee-edge-maven-plugin</artifactId>
+                <version>1.2.2</version>
+                <executions>
+                    <execution>
+                        <id>configure-bundle</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deploy-bundle</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>tk.skuro</groupId>
+                <artifactId>plan-maven-plugin</artifactId>
+                <version>1.2</version> <!-- use 1.1 if using maven < 3.1.0 -->
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

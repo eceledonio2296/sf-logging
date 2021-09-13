@@ -1,0 +1,6 @@
+<SharedFlow name="default">
+    <Step>
+        <Condition>(loggly.message != null)</Condition>
+        <Name>SC-SendLogsToLoggly</Name>
+    </Step>
+</SharedFlow>
